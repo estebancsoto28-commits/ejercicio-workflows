@@ -1,0 +1,24 @@
+name: Ejercicio 3 - Validar index.html
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  validar-archivo:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      # Este paso busca el archivo index.html en la raíz del proyecto
+      - name: Verificar si existe index.html
+        run: |
+          if [ -f "index.html" ]; then
+            echo "¡Éxito! El archivo index.html existe en el repositorio."
+          else
+            echo "Error: No se encontró el archivo index.html."
+            exit 1
+          fi
