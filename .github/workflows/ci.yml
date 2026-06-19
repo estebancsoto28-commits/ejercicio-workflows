@@ -1,0 +1,54 @@
+name: CI Landing Page Politica
+
+# Se ejecuta en push y pull_request a la rama main
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  validar-estructura:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Validar index.html
+        run: |
+          if [ -f "index.html" ]; then
+            echo "✅ index.html existe."
+          else
+            echo "❌ Falta index.html."
+            exit 1
+          fi
+
+      - name: Validar css/style.css
+        run: |
+          if [ -f "css/style.css" ]; then
+            echo "✅ css/style.css existe."
+          else
+            echo "❌ Falta css/style.css."
+            exit 1
+          fi
+
+      - name: Validar js/script.js
+        run: |
+          if [ -f "js/script.js" ]; then
+            echo "✅ js/script.js existe."
+          else
+            echo "❌ Falta js/script.js."
+            exit 1
+          fi
+
+      - name: Validar README.md
+        run: |
+          if [ -f "README.md" ]; then
+            echo "✅ README.md existe."
+          else
+            echo "❌ Falta README.md."
+            exit 1
+          fi
+
+   
