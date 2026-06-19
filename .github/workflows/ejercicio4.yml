@@ -1,0 +1,41 @@
+name: Ejercicio 4 - Validar Estructura Web
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  validar-archivos:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Verificar index.html
+        run: |
+          if [ -f "index.html" ]; then
+            echo "✅ El archivo index.html existe."
+          else
+            echo "❌ No se encontró index.html."
+            exit 1
+          fi
+
+      - name: Verificar css/style.css
+        run: |
+          if [ -f "css/style.css" ]; then
+            echo "✅ El archivo css/style.css existe."
+          else
+            echo "❌ No se encontró css/style.css."
+            exit 1
+          fi
+
+      - name: Verificar js/script.js
+        run: |
+          if [ -f "js/script.js" ]; then
+            echo "✅ El archivo js/script.js existe."
+          else
+            echo "❌ No se encontró js/script.js."
+            exit 1
+          fi
